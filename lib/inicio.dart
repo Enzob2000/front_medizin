@@ -33,9 +33,43 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+  backgroundColor: Color.fromARGB(255, 255, 255, 255),
+  elevation: 0, // Elimina la sombra del AppBar
+  automaticallyImplyLeading: false, // Oculta el botón de retroceso si no es necesario
+  actions: [
+    Padding(
+      padding: const EdgeInsets.only(right: 25.0,top: 35.0),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        onPressed: () {
+          // Lógica para saltar
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Saltar',
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Color.fromARGB(255, 0, 87, 255),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(width: 4),
+            Icon(
+              Icons.arrow_forward,
+              size: 16,
+              color: Color.fromARGB(255, 0, 87, 255),
+            ),
+          ],
+        ),
       ),
+    ),
+  ],
+),
       
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       
@@ -46,41 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Align(
-  alignment: Alignment.centerRight,
-  child: Padding(
-    padding: const EdgeInsets.only(right: 45.0),
-    child: TextButton(
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero, // Elimina el padding interno del botón
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Reduce el área clickeable
-      ),
-      onPressed: () {
-        // Lógica para saltar
-      },
-      child: Row(
-        mainAxisSize: MainAxisSize.min, // Importante para que no ocupe todo el ancho
-        mainAxisAlignment: MainAxisAlignment.end, // Alinea el contenido a la derecha
-        children: [
-          Text(
-            'Saltar',
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Color.fromARGB(255, 0, 87, 255),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(width: 4), // Espacio pequeño entre texto e ícono
-          Icon(
-            Icons.arrow_forward,
-            size: 16,
-            color: Color.fromARGB(255, 0, 87, 255),
-          ),
-        ],
-      ),
-    ),
-  ),
-),
+            
             Padding(
               padding: const EdgeInsets.only(top: 85.0,left: 45.0, right: 45.0),
               child: Image.asset(
