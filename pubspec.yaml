@@ -54,6 +54,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/logo.png  
+    - assets/logoblanco.png  
+    - assets/bandera.png  
      # ← Así debe aparecer
     
 

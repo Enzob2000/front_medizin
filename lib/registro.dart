@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ingresarnumero.dart';
 
 void main() {
   runApp(InicioScreen());
@@ -126,55 +127,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            Checkbox(
-                                    value: isChecked,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isChecked = value ?? false;
-                                      });
-                                    },
-                                    fillColor: WidgetStateProperty.resolveWith<Color>((states) {
-                                      return states.contains(WidgetState.selected) 
-                                        ? Colors.black // Relleno negro cuando está seleccionado
-                                        : Colors.transparent; // Transparente cuando no lo está
-                                    }),
-                                    checkColor: Colors.white, // Color del check (✓)
-                                    side: BorderSide(
-                                      color: Colors.black, // Borde negro siempre
-                                      width: 1.5, // Grosor del borde
-                                    ),
-                                  ),
-                            Expanded(
-                              child: RichText(
-                                text: TextSpan(
-                                  style: TextStyle(fontSize: 12.0, color: Colors.grey[700]),
-                                  children: [
-                                    TextSpan(text: 'Al continuar, aceptas nuestros '),
-                                    TextSpan(
-                                      text: 'términos de servicio ',
-                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                                    ),
-                                    TextSpan(
-                                      text: 'y Política de privacidad',
-                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-
-                                    ),
-                                    TextSpan(text: '.'),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      
                       SizedBox(height: 50.0),
                       Padding(
   padding: const EdgeInsets.symmetric(horizontal: 0.0),  // Margen izquierdo y derecho
@@ -182,11 +135,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     width: double.infinity,  // Ocupa todo el ancho disponible
     height: 60.0,
     child: ElevatedButton(
-      onPressed: isChecked
-          ? () {
-              
-            }
-          : null,
+       onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Numero()),
+        );
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromARGB(255, 16, 16, 16),
         shape: RoundedRectangleBorder(
@@ -207,8 +161,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 ),                    SizedBox(height: 10.0),
                       TextButton(
                         onPressed: () {
-                          // Lógica para manejar el inicio de sesión
-                        },
+        
+      },
                         child: RichText(
                           text: TextSpan(
                             style: TextStyle(
