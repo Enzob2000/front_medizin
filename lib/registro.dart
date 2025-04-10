@@ -92,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fillColor: Colors.grey[200],
                           contentPadding: EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(19.0),
                             borderSide: BorderSide.none,
                           ),
                         ),
@@ -106,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fillColor: Colors.grey[200],
                           contentPadding: EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(19.0),
                             borderSide: BorderSide.none,
                           ),
                         ),
@@ -121,13 +121,61 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fillColor: Colors.grey[200],
                           contentPadding: EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
+                            borderRadius: BorderRadius.circular(19.0),
                             borderSide: BorderSide.none,
                           ),
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isChecked = !isChecked;
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Checkbox(
+                                    value: isChecked,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isChecked = value ?? false;
+                                      });
+                                    },
+                                    fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+                                      return states.contains(WidgetState.selected) 
+                                        ? Colors.black // Relleno negro cuando está seleccionado
+                                        : Colors.transparent; // Transparente cuando no lo está
+                                    }),
+                                    checkColor: Colors.white, // Color del check (✓)
+                                    side: BorderSide(
+                                      color: Colors.black, // Borde negro siempre
+                                      width: 1.5, // Grosor del borde
+                                    ),
+                                  ),
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  style: TextStyle(fontSize: 12.0, color: Colors.grey[700]),
+                                  children: [
+                                    TextSpan(text: 'Al continuar, aceptas nuestros '),
+                                    TextSpan(
+                                      text: 'términos de servicio ',
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: 'y Política de privacidad',
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+
+                                    ),
+                                    TextSpan(text: '.'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(height: 50.0),
                       Padding(
   padding: const EdgeInsets.symmetric(horizontal: 0.0),  // Margen izquierdo y derecho
@@ -142,9 +190,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         );
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 16, 16, 16),
+        backgroundColor: Color.fromARGB(255, 0, 87, 255),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
+          borderRadius: BorderRadius.circular(19.0),
         ),
         padding: EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
       ),

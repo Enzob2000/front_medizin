@@ -149,7 +149,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.0),
+            borderRadius: BorderRadius.circular(19.0),
           ),
         ),
         padding: MaterialStateProperty.all<EdgeInsets>(
@@ -191,7 +191,11 @@ SizedBox(height: 10.0),
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) => const Color.fromARGB(255, 30, 217, 236),
         ),
-        
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(19.0),
+          ),
+        ),
         padding: MaterialStateProperty.all<EdgeInsets>(
           const EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
         ),
