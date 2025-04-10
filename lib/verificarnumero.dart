@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'iniciarsesion.dart';
 
 void main() {
   runApp(Verificar());
@@ -162,10 +163,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     height: 67.0,
     child: ElevatedButton(
       onPressed: () {
-        /*Navigator.push(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const InicioScreen()),
-        );*/
+          MaterialPageRoute(builder: (context) => const InicioSesion()),
+        );
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
