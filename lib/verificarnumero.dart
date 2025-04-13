@@ -189,7 +189,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
       child: const Text(
-        'Enviar Código',
+        'Verificar',
         style: TextStyle(
           fontSize: 18.0,
           color: Colors.white,

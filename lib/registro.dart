@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ingresarnumero.dart';
+import 'iniciarsesion.dart';
 
 void main() {
   runApp(InicioScreen());
@@ -209,8 +210,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 ),                    SizedBox(height: 10.0),
                       TextButton(
                         onPressed: () {
-        
-      },
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const InicioSesion()),
+                            );
+                        },
                         child: RichText(
                           text: TextSpan(
                             style: TextStyle(

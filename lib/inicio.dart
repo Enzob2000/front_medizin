@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'registro.dart';
+import 'iniciarsesion.dart';
 void main() {
   runApp(Inicio ());
 }
@@ -184,7 +185,7 @@ SizedBox(height: 10.0),
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const InicioScreen()),
+          MaterialPageRoute(builder: (context) => const InicioSesion()),
         );
       },
       style: ButtonStyle(

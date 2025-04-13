@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +24,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/favicon.png"
+  adaptive_icon_background: "#19D8EA"
 
 flutter:
   assets:
@@ -32,4 +34,22 @@ flutter:
     - assets/favicon.png
     - assets/google.png
     - assets/face.png
+    - assets/producto1.png
+    - assets/producto2.png
+    - assets/producto3.png
+    - assets/farmacia.png
+    - assets/salud.png
+    - assets/higiene.png
+    - assets/bebe.png
+    - assets/siencere.png
+    - assets/snack.png
+    - assets/bucal.png
+    - assets/hogar.png
+    - assets/banner.png
+    - assets/cocacola.png
+    - assets/ordinary.png
+    - assets/genven.png
+    - assets/acetaminofen_500mg.png
+    - assets/acetaminofen_650mg.png
+    
   uses-material-design: true

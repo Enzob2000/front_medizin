@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ingresarnumero.dart';
+import 'registro.dart';
 
 void main() {
   runApp(const InicioSesion());
@@ -226,7 +227,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                     const SizedBox(height: 1.0),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const InicioScreen()),
+                        );
+                      },
                       child: RichText(
                         text: const TextSpan(
                           text: '¿No tienes una cuenta? ',

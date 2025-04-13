@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'inicio.dart'; // Importa tu archivo inicio.dart
-
+import 'home.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Inicio(), // ¡Pantalla inicial cambiada a inicio.dart!
+      home: Homes(), // ¡Pantalla inicial cambiada a inicio.dart!
     );
   }
 }
