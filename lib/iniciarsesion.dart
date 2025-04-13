@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ingresarnumero.dart';
+import 'home.dart';
 import 'registro.dart';
 
 void main() {
@@ -186,7 +186,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const Numero()),
+                            MaterialPageRoute(builder: (context) => Homes()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
