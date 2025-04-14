@@ -37,7 +37,7 @@ class Marca {
     required this.image,
   });
 }
-
+//Marca
 class MarcaButton extends StatelessWidget {
   final Marca marca;
 
@@ -89,7 +89,7 @@ class MarcaButton extends StatelessWidget {
     );
   }
 }
-
+//Categoria
 class CategoryButton extends StatelessWidget {
   final Category category;
 
@@ -172,6 +172,7 @@ class ProductListScreen extends StatelessWidget {
   }
 }
 
+//Medicamentos
 Widget _buildProductCard(Product product) {
   return Card(
     color: Colors.white,
@@ -210,7 +211,7 @@ Widget _buildProductCard(Product product) {
                 ),
               ),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 2),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -226,45 +227,65 @@ Widget _buildProductCard(Product product) {
                 Text(
                   product.name,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
-                Text(
-                  product.originalPrice,
+                SizedBox(height: 0),
+                Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    GestureDetector(
+      onTap: () {
+        // Add your onTap functionality here
+      },
+      child: Row(
+        children: [
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.grey[700],
+                decoration: TextDecoration.lineThrough,
+              ),
+              children: [
+                TextSpan(
+                  text: "${product.originalPrice}\n",
                   style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
+                    color: Color.fromARGB(255, 139, 139, 139),
                     decoration: TextDecoration.lineThrough,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0,top: 0.0),
-                      child: Text(
-                        product.discountPrice,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 87, 255),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        print("Producto añadido");
-                      },
-                      icon: Icon(
-                        Icons.add_circle,
-                        color: Colors.blue,
-                        size: 32,
-                      ),
-                    )
-                  ],
+                TextSpan(
+                  text: product.discountPrice,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                    color: Color.fromARGB(255, 0, 87, 255),
+                    decoration: TextDecoration.none,
+                  ),
                 ),
+                const TextSpan(text: '.'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+    IconButton(
+      onPressed: () {
+        print("Producto añadido");
+      },
+      icon: const Icon(
+        Icons.add_circle,
+        color: Colors.blue,
+        size: 32,
+      ),
+    ),
+  ],
+),
               ],
             ),
           ],
@@ -322,7 +343,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Category(name: 'Salud', image: 'assets/salud.png'),
     Category(name: 'Higiene', image: 'assets/higiene.png'),
     Category(name: 'Bebé', image: 'assets/bebe.png'),
-    Category(name: 'Siéncere', image: 'assets/siencere.png'),
+    Category(name: 'Skincare', image: 'assets/siencere.png'),
     Category(name: 'Snack y Bebidas', image: 'assets/snack.png'),
     Category(name: 'Salud bucal', image: 'assets/bucal.png'),
     Category(name: 'Hogar', image: 'assets/hogar.png'),
@@ -336,23 +357,23 @@ class _SearchScreenState extends State<SearchScreen> {
 
   final List<BottomNavigationBarItem> _menuItems = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.home),
+      icon: Icon(Icons.home_outlined),
       label: 'Inicio',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.category),
+      icon: Icon(Icons.category_outlined),
       label: 'Categoría',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.favorite),
+      icon: Icon(Icons.favorite_border),
       label: 'Favoritos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.credit_card),
+      icon: Icon(Icons.credit_card_outlined),
       label: 'Creditos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.medical_services),
+      icon: Icon(Icons.monitor_heart_outlined),
       label: 'Servicios',
     ),
   ];
@@ -363,7 +384,7 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        toolbarHeight: 70.0,
+        toolbarHeight: 90.0,
         leadingWidth: 110,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0, top: 25.0),
@@ -414,7 +435,7 @@ class _SearchScreenState extends State<SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Buscar un producto',
@@ -431,20 +452,20 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.star, color: Colors.blue, size: 16),
+                        icon: Icon(Icons.star, color: Colors.blue, size: 12),
                         label: Text('Más vendidos', 
-                             style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400)),
+                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
                         onPressed: () {},
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: EdgeInsets.symmetric(horizontal: 0.0),
                         ),
                       ),
                     ),
@@ -452,14 +473,14 @@ class _SearchScreenState extends State<SearchScreen> {
                   
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.location_on, color: Colors.blue, size: 16),
-                        label: Text('Carúpano -5km', 
-                             style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400)),
+                        icon: Icon(Icons.location_on, color: Colors.blue, size: 12),
+                        label: Text('Carúpano - 5km', 
+                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
                         onPressed: () {},
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: EdgeInsets.symmetric(horizontal: 0.0),
                         ),
                       ),
                     ),
@@ -467,14 +488,14 @@ class _SearchScreenState extends State<SearchScreen> {
                   
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.filter_list, color: Colors.blue, size: 16),
+                        icon: Icon(Icons.filter_list, color: Colors.blue, size: 12),
                         label: Text('Filtrar búsqueda', 
-                             style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400)),
+                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
                         onPressed: () {},
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: EdgeInsets.symmetric(horizontal: 0.0),
                         ),
                       ),
                     ),
@@ -494,48 +515,38 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
             Container(
-              color: Color.fromARGB(255, 25, 216, 234),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 180,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: imagePaths.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:25.0, vertical: 15.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagePaths[index],
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Center(
-                      child: SmoothPageIndicator(
-                        controller: _pageController,
-                        count: imagePaths.length,
-                        effect: WormEffect(
-                          dotHeight: 8,
-                          dotWidth: 8,
-                          activeDotColor: Colors.white,
-                          dotColor: Colors.white.withOpacity(0.5),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+  color: Color.fromARGB(255, 25, 216, 234),
+  child: Column(
+    children: [
+      SizedBox(
+        height: 160,
+        child: PageView.builder(
+          controller: PageController(
+            viewportFraction: 0.55, // This controls how much space each page occupies
+          ),
+          itemCount: imagePaths.length,
+          padEnds: false, // Removes extra padding at ends
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0), // Space between items
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  imagePaths[index],
+                  width: 140,  // Explicit width
+                  height: 140, // Matches height to make square
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
+            );
+          },
+        ),
+      ),
+    ],
+  ),
+),
             
             Padding(
               padding: const EdgeInsets.only(left: 15.0, top: 16.0, right: 15.0, bottom: 8.0),
@@ -634,7 +645,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   crossAxisCount: 3,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.8,
                 ),
                 itemCount: marca.length,
                 itemBuilder: (context, index) {
@@ -646,7 +657,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 25.0, bottom: 8.0),
+              padding: const EdgeInsets.only(left: 15.0, right: 25.0, bottom: 15.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -670,7 +681,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             SizedBox(
-              height: 320,
+              height: 290,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -680,7 +691,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   final secondIndex = firstIndex + 1;
                   
                   return Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
+                    width: MediaQuery.of(context).size.width*0.92,
                     margin: EdgeInsets.only(right: 15),
                     child: Row(
                       children: [
@@ -731,7 +742,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   crossAxisCount: 3,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.9,
                 ),
                 itemCount: marca.length,
                 itemBuilder: (context, index) {
