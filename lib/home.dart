@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -12,6 +13,7 @@ class Homes extends StatelessWidget {
       title: 'Ejemplo de Búsqueda',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins', 
       ),
       home: SearchScreen(),
     );
@@ -227,7 +229,7 @@ Widget _buildProductCard(Product product) {
                 Text(
                   product.name,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -462,7 +464,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: TextButton.icon(
                         icon: Icon(Icons.star, color: Colors.blue, size: 12),
                         label: Text('Más vendidos', 
-                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
+                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
                         onPressed: () {},
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.symmetric(horizontal: 0.0),
@@ -477,8 +479,10 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: TextButton.icon(
                         icon: Icon(Icons.location_on, color: Colors.blue, size: 12),
                         label: Text('Carúpano - 5km', 
-                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
-                        onPressed: () {},
+                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
+                        onPressed: () {
+                            _abrirModalBottomSheet(context);
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.symmetric(horizontal: 0.0),
                         ),
@@ -492,7 +496,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: TextButton.icon(
                         icon: Icon(Icons.filter_list, color: Colors.blue, size: 12),
                         label: Text('Filtrar búsqueda', 
-                             style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400)),
+                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
                         onPressed: () {},
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.symmetric(horizontal: 0.0),
@@ -772,4 +776,244 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
+}
+Widget _buildSocialButton({
+    required String imagePath,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        
+      ),
+      child: OutlinedButton(
+        onPressed: onPressed,
+        
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(19),
+          ),
+          backgroundColor: Color.fromARGB(255, 235, 235, 235),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                icon: Icon(Icons.location_on_outlined, color: Color.fromARGB(255, 0, 87, 255)),
+                padding: EdgeInsets.zero,
+                iconSize: 25,
+                onPressed: () {},
+              ),
+                RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.grey[700],
+              ),
+              children: [
+                TextSpan(
+                  text: "Ubicación \n",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
+                    color: Color.fromARGB(255, 139, 139, 139),
+                  ),
+                ),
+                TextSpan(
+                  text: "Carúpano",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                    color: Color.fromARGB(255, 0, 87, 255),
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+                const TextSpan(text: '.'),
+              ],
+            ),
+          ),
+              ],
+            ),
+            
+          ],
+        ),
+      ),
+    );
+  }
+  
+
+  Widget _buildSocialButton2({
+    required String imagePath,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        
+      ),
+      child: OutlinedButton(
+        onPressed: onPressed,
+        
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(19),
+          ),
+          backgroundColor: Color.fromARGB(255, 235, 235, 235),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                icon: Icon(Icons.radio_button_checked_outlined, color: Color.fromARGB(255, 0, 87, 255)),
+                padding: EdgeInsets.zero,
+                iconSize: 25,
+                onPressed: () {},
+              ),
+                RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.grey[700],
+              ),
+              children: [
+                TextSpan(
+                  text: "Radio \n",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
+                    color: Color.fromARGB(255, 139, 139, 139),
+                  ),
+                ),
+                TextSpan(
+                  text: "5 kilómetros",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                    color: Color.fromARGB(255, 0, 87, 255),
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+                const TextSpan(text: '.'),
+              ],
+            ),
+          ),
+              ],
+            ),
+            
+          ],
+        ),
+      ),
+    );
+  }
+ 
+void _abrirModalBottomSheet(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: true, // Permite cerrar tocando fuera
+    builder: (BuildContext context) {
+      return Center(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(21),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10,
+                spreadRadius: 2,
+              )
+            ],
+          ),
+          height: MediaQuery.of(context).size.height * 0.85,
+          width: MediaQuery.of(context).size.width * 0.95,
+          padding: EdgeInsets.all(15),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 20),
+              Text(
+                'Cambiar Ubicación',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontFamily: 'Poppins',
+
+    decoration: TextDecoration.none,
+                ),
+              ),
+              
+              Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                       const SizedBox(height: 20),
+                       Padding(
+                        padding: EdgeInsets.only(bottom: 10,left: 0),
+                        
+                        child: Text(
+                          'Buscar por cuidad, localidad o código postal',
+                          style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w900, color: Colors.black,
+    decoration: TextDecoration.none,),
+                          textAlign: TextAlign.left,
+                          
+                        ),
+                      ),
+                      _buildSocialButton(
+                        imagePath: 'assets/google.png',
+                        label: 'Continue with Google',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(height: 20),
+                      _buildSocialButton2(
+                        imagePath: 'assets/google.png',
+                        label: 'Continue with Google',
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+               SizedBox(height: 20),
+               Container(
+                height: 340,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 49, 49, 49),
+                  borderRadius: BorderRadius.circular(19.0),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 25),
+                  backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                  padding: EdgeInsets.symmetric(vertical: 19.0, horizontal: 37.0),
+                  shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(19.0),
+                  ),
+                ),
+                child: Text(
+                  'Aplicar Cambios',
+                  style: TextStyle(fontFamily: 'Poppins',color: Colors.white,fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

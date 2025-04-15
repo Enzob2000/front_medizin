@@ -51,5 +51,14 @@ flutter:
     - assets/genven.png
     - assets/acetaminofen_500mg.png
     - assets/acetaminofen_650mg.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
     
   uses-material-design: true

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homes(), // ¡Pantalla inicial cambiada a inicio.dart!
+      home: Inicio(), // ¡Pantalla inicial cambiada a inicio.dart!
     );
   }
 }
