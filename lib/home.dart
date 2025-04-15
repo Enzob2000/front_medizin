@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'categorias.dart';
 
 void main() {
   runApp(Homes());
@@ -565,12 +566,20 @@ class _SearchScreenState extends State<SearchScreen> {
                       color: Color.fromARGB(255, 67, 67, 67),
                     ),
                   ),
-                  Text(
-                    "Ver todas",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 114, 109, 109),
+                  TextButton(
+                    onPressed: () {
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Categorias()),
+                      );
+                    },
+                    child: Text(
+                      "Ver todas",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 114, 109, 109),
+                      ),
                     ),
                   ),
                 ]

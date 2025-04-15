@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:front_medizin/home.dart';
 import 'inicio.dart'; // Importa tu archivo inicio.dart
-import 'home.dart';
+import 'categorias.dart';
 void main() {
   runApp(const MyApp());
 }
