@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'farmacia.dart';
 
 void main() {
-  runApp(const Categorias());
+  runApp(const Farmacia());
 }
 
-class Categorias extends StatelessWidget {
-  const Categorias({super.key});
+class Farmacia extends StatelessWidget {
+  const Farmacia({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Categorias',
+      title: 'Malestar General',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'Poppins', 
@@ -25,12 +24,10 @@ class Categorias extends StatelessWidget {
 class Product {
   final String name;
   final String imagePath;
-  final String link;
 
   const Product({
     required this.name,
     required this.imagePath,
-    required this.link
   });
 }
 
@@ -62,24 +59,15 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
 
   final List<Product> products = const [
-    Product(name: 'Farmacia y\nSalud', imagePath: 'assets/farmacia2.png', link: 'Farmacia()'),
-    Product(name: 'Belleza', imagePath: 'assets/siencere2.png', link: ''),
-    Product(name: 'Cuidado \nPersonal', imagePath: 'assets/higiene2.png', link: ''),
-    Product(name: 'Bebé', imagePath: 'assets/bebe2.png', link: ''),
-    Product(name: 'Alimentos\ny Bebidas', imagePath: 'assets/snack2.png', link: ''),
-    Product(name: 'Hogar \ny Otros', imagePath: 'assets/hogar2.png', link: ''),
+    Product(name: 'Malestar\nGeneral', imagePath: 'assets/farmacia2.png'),
+    Product(name: 'Salud\nRespiratoria', imagePath: 'assets/siencere2.png'),
+    Product(name: 'Primeros \nAuxilios', imagePath: 'assets/higiene2.png'),
+    Product(name: 'Salud\nDigestiva', imagePath: 'assets/bebe2.png'),
+    Product(name: 'Nutrición\ny Bienestar', imagePath: 'assets/snack2.png'),
+    Product(name: 'Vitaminas y\nSuplementos', imagePath: 'assets/hogar2.png'),
   ];
 
-  final List<Category> categories = const [
-    Category(name: 'Farmacia', image: 'assets/farmacia.png'),
-    Category(name: 'Salud', image: 'assets/salud.png'),
-    Category(name: 'Higiene', image: 'assets/higiene.png'),
-    Category(name: 'Bebé', image: 'assets/bebe.png'),
-    Category(name: 'Skincare', image: 'assets/siencere.png'),
-    Category(name: 'Snack y Bebidas', image: 'assets/snack.png'),
-    Category(name: 'Salud bucal', image: 'assets/bucal.png'),
-    Category(name: 'Hogar', image: 'assets/hogar.png'),
-  ];
+
 
   final List<BottomNavigationBarItem> _menuItems = const [
     BottomNavigationBarItem(
@@ -104,15 +92,6 @@ class _SearchScreenState extends State<SearchScreen> {
     ),
   ];
 
-  Widget _getPageFromProduct(Product product) {
-  switch(product.link) {
-    case 'farmacia':
-      return Farmacia();
-    default:
-      return Farmacia();
-  }
-}
-
   Widget _buildProductCard(Product product) {
     return Card(
       color: Color.fromARGB(255, 0, 87, 255),
@@ -128,11 +107,7 @@ class _SearchScreenState extends State<SearchScreen> {
         borderRadius: BorderRadius.circular(10),
         
         onTap: () {
-          final page = _getPageFromProduct(product);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => page),
-          );
+          // Acción al hacer clic en el producto
         },
         child: Padding(
           
@@ -223,16 +198,17 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 0, 87, 255),
+        elevation: 4,
         toolbarHeight: 90.0,
         leadingWidth: 110,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0, top: 25.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: const Icon(Icons.arrow_back, color: Color.fromARGB(255, 0, 87, 255)),
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(minWidth: 40, maxWidth: 40),
                 onPressed: () {
@@ -248,37 +224,38 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         title: Padding(
           padding: const EdgeInsets.only(top: 25.0),
-          child: Text("Categorías",
+          child: Text("Farmacia y Salud",
               style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: Color.fromARGB(255, 0, 87, 255),
-              ),)
+                fontSize: 16 ,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.left,)
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: IconButton(
-              icon: const Icon(Icons.search_outlined, color: Color.fromARGB(255, 0, 87, 255)),
+              icon: const Icon(Icons.search_outlined, color: Colors.white),
               onPressed: () {},
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart, color: Color.fromARGB(255, 0, 87, 255)),
+              icon: const Icon(Icons.shopping_cart, color: Colors.white),
               onPressed: () {},
             ),
           ),
         ],
       ),
       backgroundColor: Colors.white,
-      
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-        SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: GridView.builder(

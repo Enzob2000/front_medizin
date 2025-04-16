@@ -13,7 +13,7 @@ class InicioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Registro',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'Poppins',),
       home: RegistrationScreen(),
     );
   }

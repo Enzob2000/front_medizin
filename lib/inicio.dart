@@ -12,7 +12,7 @@ class Inicio extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Inicio',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'Poppins',),
       home: RegistrationScreen(),
     );
   }

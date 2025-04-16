@@ -57,6 +57,14 @@ flutter:
     - assets/bebe2.png
     - assets/snack2.png
     - assets/hogar2.png
+    - assets/malestar.png
+    - assets/siencere2.png
+    - assets/higiene2.png
+    - assets/bebe2.png
+    - assets/snack2.png
+    - assets/hogar2.png
+    - assets/torsilax.png
+    - assets/atamel.png
 
   fonts:
     - family: Poppins

@@ -13,7 +13,7 @@ class InicioSesion extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Iniciar Sesión',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'Poppins'),
       home: const RegistrationScreen(),
     );
   }
