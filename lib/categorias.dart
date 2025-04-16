@@ -250,7 +250,7 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.only(top: 25.0),
           child: Text("Categorías",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Color.fromARGB(255, 0, 87, 255),
               ),)

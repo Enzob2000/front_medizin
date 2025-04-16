@@ -226,7 +226,7 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.only(top: 25.0),
           child: Text("Farmacia y Salud",
               style: TextStyle(
-                fontSize: 16 ,
+                fontSize: 13 ,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),maxLines: 1,
