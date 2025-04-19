@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-
+import 'malestar.dart';
 void main() {
   runApp(const Farmacia());
 }
@@ -24,10 +24,12 @@ class Farmacia extends StatelessWidget {
 class Product {
   final String name;
   final String imagePath;
+  final String link;
 
   const Product({
     required this.name,
     required this.imagePath,
+    required this.link
   });
 }
 
@@ -48,6 +50,15 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
+Widget _getPageFromProduct(Product product) {
+  switch(product.link) {
+    case 'Malestar()':
+      return Malestar();
+    default:
+      return Farmacia();
+  }
+}
+
 class _SearchScreenState extends State<SearchScreen> {
   final PageController _pageController = PageController(viewportFraction: 0.8);
   int _currentIndex = 0;
@@ -59,12 +70,12 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
 
   final List<Product> products = const [
-    Product(name: 'Malestar\nGeneral', imagePath: 'assets/farmacia2.png'),
-    Product(name: 'Salud\nRespiratoria', imagePath: 'assets/siencere2.png'),
-    Product(name: 'Primeros \nAuxilios', imagePath: 'assets/higiene2.png'),
-    Product(name: 'Salud\nDigestiva', imagePath: 'assets/bebe2.png'),
-    Product(name: 'Nutrición\ny Bienestar', imagePath: 'assets/snack2.png'),
-    Product(name: 'Vitaminas y\nSuplementos', imagePath: 'assets/hogar2.png'),
+    Product(name: 'Malestar\nGeneral', imagePath: 'assets/farmacia2.png' , link: 'Malestar()'),
+    Product(name: 'Salud\nRespiratoria', imagePath: 'assets/siencere2.png' , link: ''),
+    Product(name: 'Primeros \nAuxilios', imagePath: 'assets/higiene2.png' , link: ''),
+    Product(name: 'Salud\nDigestiva', imagePath: 'assets/bebe2.png' , link: ''),
+    Product(name: 'Nutrición\ny Bienestar', imagePath: 'assets/snack2.png' , link: ''),
+    Product(name: 'Vitaminas y\nSuplementos', imagePath: 'assets/hogar2.png' , link: ''),
   ];
 
 
@@ -107,7 +118,11 @@ class _SearchScreenState extends State<SearchScreen> {
         borderRadius: BorderRadius.circular(10),
         
         onTap: () {
-          // Acción al hacer clic en el producto
+          final page = _getPageFromProduct(product);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
         },
         child: Padding(
           
@@ -244,7 +259,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart, color: Colors.white),
+              icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),
               onPressed: () {},
             ),
           ),

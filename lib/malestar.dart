@@ -113,107 +113,136 @@ class _SearchScreenState extends State<SearchScreen> {
         // Acción al hacer clic en el producto
       },
       child: Padding(
-        padding: EdgeInsets.all(6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                width: 130,
-                height: 130,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[200],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    product.imagePath,
-                    fit: BoxFit.cover,
-                  ),
+  padding: const EdgeInsets.all(6),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      // Contenedor de la imagen con corazón
+      Center(
+        child: Container(
+          width: 130,
+          height: 130,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.grey[200],
+          ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  product.imagePath,
+                  width: 130,
+                  height: 130,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            SizedBox(height: 2),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.categoria,
-                  style: TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[800],
-                  ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  product.name,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 0),
-                Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    GestureDetector(
-      onTap: () {
-        // Add your onTap functionality here
-      },
-      child: Row(
-        children: [
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 12.0,
-                color: Colors.grey[700],
-                decoration: TextDecoration.lineThrough,
-              ),
-              children: [
-                TextSpan(
-                  text: "${product.precioAnt}\n",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12.0,
-                    color: Color.fromARGB(255, 139, 139, 139),
-                    decoration: TextDecoration.lineThrough,
-                  ),
-                ),
-                TextSpan(
-                  text: product.precioDesc,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 18.0,
+              Positioned(
+                top: 1,
+                right: 0,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.favorite_border,
                     color: Color.fromARGB(255, 0, 87, 255),
-                    decoration: TextDecoration.none,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    // Lógica para marcar como favorito
+                  },
+                  style: IconButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(5, 5),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 ),
-                const TextSpan(text: '.'),
-              ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      const SizedBox(height: 2),
+      
+      // Información del producto
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            product.categoria,
+            style: TextStyle(
+              fontSize: 8,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue[800],
             ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            product.name,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 0),
+          
+          // Precios y botón de añadir
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    // Acción al hacer clic
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.grey[700],
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "${product.precioAnt}\n",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                            color: const Color.fromARGB(255, 139, 139, 139),
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        TextSpan(
+                          text: product.precioDesc,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 18.0,
+                            color: Color.fromARGB(255, 0, 87, 255),
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onPressed: () {
+                  print("Producto añadido");
+                },
+                icon: const Icon(
+                  Icons.add_circle,
+                  color: Colors.blue,
+                  size: 32,
+                ),
+              ),
+            ],
           ),
         ],
       ),
-    ),
-    IconButton(
-      onPressed: () {
-        print("Producto añadido");
-      },
-      icon: const Icon(
-        Icons.add_circle,
-        color: Colors.blue,
-        size: 32,
-      ),
-    ),
-  ],
+    ],
+  ),
 ),
-              ],
-            ),
-          ],
-        ),
-      ),
     ),
   );
 }
@@ -223,30 +252,28 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 87, 255),
-        elevation: 4,
+        elevation: 0,
         toolbarHeight: 90.0,
-        leadingWidth: 110,
+        leadingWidth: 90,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0, top: 25.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
                 padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(minWidth: 40, maxWidth: 40),
                 onPressed: () {
                    Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Homes()),
                   );
                 },
-              ),
-        
+              )
             ],
           ),
         ),
-        title: Padding(
+        title: Center(
+          child: Padding(
           padding: const EdgeInsets.only(top: 25.0),
           child: Text("Malestar General",
               style: TextStyle(
@@ -254,8 +281,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.left,)
+              textAlign: TextAlign.right)
+        ),
         ),
         actions: [
           Padding(
@@ -268,7 +295,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart, color: Colors.white),
+              icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),
               onPressed: () {},
             ),
           ),

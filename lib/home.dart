@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'categorias.dart';
+import 'busqueda.dart';
+import 'filtros.dart';
+import 'busqueda2.dart';
 
 void main() {
   runApp(Homes());
@@ -400,7 +403,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 onPressed: () {},
               ),
               IconButton(
-                icon: Icon(Icons.notifications, color: Color.fromARGB(255, 0, 87, 255)),
+                icon: Icon(Icons.notifications_outlined, color: Color.fromARGB(255, 0, 87, 255)),
                 padding: EdgeInsets.zero,
                 constraints: BoxConstraints(minWidth: 40, maxWidth: 40),
                 onPressed: () {},
@@ -419,14 +422,14 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
             child: IconButton(
-              icon: Icon(Icons.supervised_user_circle, color: Color.fromARGB(255, 0, 87, 255)),
+              icon: Icon(Icons.account_circle_outlined, color: Color.fromARGB(255, 0, 87, 255)),
               onPressed: () {},
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
-              icon: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 0, 87, 255)),
+              icon: Icon(Icons.shopping_cart_outlined, color: Color.fromARGB(255, 0, 87, 255)),
               onPressed: () {},
             ),
           ),
@@ -438,8 +441,16 @@ class _SearchScreenState extends State<SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0, left: 16, right: 16),
               child: TextField(
+                onChanged: (text) {
+                    if (text.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MedicineSearchScreen(query: text)),
+                      );
+                    }
+                  },
                 decoration: InputDecoration(
                   hintText: 'Buscar un producto',
                   suffixIcon: Icon(Icons.search),
@@ -457,50 +468,63 @@ class _SearchScreenState extends State<SearchScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.star, color: Colors.blue, size: 12),
+                        icon: Icon(Icons.star_border_outlined, color: Colors.blue, size: 12),
                         label: Text('Más vendidos', 
                              style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
-                        onPressed: () {},
+                        onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Busqueda2()),
+                  );},
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 0.0),
+                          padding: EdgeInsets.zero, // Elimina el padding horizontal y vertical
+                          minimumSize: Size.zero,tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                           visualDensity: VisualDensity.compact,
                         ),
                       ),
                     ),
                   ),
-                  
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.location_on, color: Colors.blue, size: 12),
+                        icon: Icon(Icons.location_on_outlined, color: Colors.blue, size: 12,),
+                        
                         label: Text('Carúpano - 5km', 
                              style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
                         onPressed: () {
                             _abrirModalBottomSheet(context);
                         },
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 0.0),
+                          padding: EdgeInsets.zero, // Elimina el padding horizontal y vertical
+                          minimumSize: Size.zero,tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                           visualDensity: VisualDensity.compact,
                         ),
                       ),
                     ),
                   ),
-                  
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.filter_list, color: Colors.blue, size: 12),
+                        icon: Icon(Icons.tune, color: Colors.blue, size: 12),
                         label: Text('Filtrar búsqueda', 
                              style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Filtros()),
+                  );
+                        },
                         style: TextButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 0.0),
+                          padding: EdgeInsets.zero, // Elimina el padding horizontal y vertical
+                          minimumSize: Size.zero,tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                           visualDensity: VisualDensity.compact,
                         ),
                       ),
                     ),

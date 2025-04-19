@@ -266,7 +266,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart, color: Color.fromARGB(255, 0, 87, 255)),
+              icon: const Icon(Icons.shopping_cart_outlined, color: Color.fromARGB(255, 0, 87, 255)),
               onPressed: () {},
             ),
           ),
