@@ -65,6 +65,12 @@ flutter:
     - assets/hogar2.png
     - assets/torsilax.png
     - assets/atamel.png
+    - assets/acetaminofen2.png
+    - assets/inicio.png
+    - assets/categoria.png
+    - assets/creditos.png
+    - assets/servicios.png
+    - assets/favoritos.png
 
   fonts:
     - family: Poppins

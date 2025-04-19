@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'producto.dart';
 
 void main() {
   runApp(const Busqueda2());
@@ -270,7 +271,7 @@ void initState() {
                             itemCount: products.length,
                             itemBuilder: (context, index) {
                               return SizedBox(
-                                child:  _buildProductCard(products[index]),
+                                child:  _buildProductCard(products[index],context),
                               );
                             },
                           ),
@@ -345,7 +346,7 @@ final List<BottomNavigationBarItem> _menuItems = const [
   ];
 
 
-   Widget _buildProductCard(Product product) {
+   Widget _buildProductCard(Product product, context) {
   return Card(
     color: Colors.white,
     margin: EdgeInsets.only(bottom: 10),
@@ -359,7 +360,10 @@ final List<BottomNavigationBarItem> _menuItems = const [
     child: InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: () {
-        // Acción al hacer clic en el producto
+        Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Producto()),
+                  );
       },
       child: Padding(
   padding: const EdgeInsets.all(6),
@@ -427,7 +431,7 @@ final List<BottomNavigationBarItem> _menuItems = const [
           Text(
             product.name,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -440,7 +444,7 @@ final List<BottomNavigationBarItem> _menuItems = const [
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    // Acción al hacer clic
+                    
                   },
                   child: RichText(
                     text: TextSpan(
