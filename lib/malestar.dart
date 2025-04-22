@@ -73,28 +73,29 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
 
-  final List<BottomNavigationBarItem> _menuItems = const [
+ final List<BottomNavigationBarItem> _menuItems = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.home_outlined),
+      icon: Image.asset('assets/inicio.png', width: 24, height: 24),
       label: 'Inicio',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.category_outlined),
+      icon: Image.asset('assets/categoria.png', width: 24, height: 24),
       label: 'Categoría',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.favorite_border),
+      icon: Image.asset('assets/favoritos.png', width: 24, height: 24),
       label: 'Favoritos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.credit_card_outlined),
+      icon: Image.asset('assets/creditos.png', width: 24, height: 24),
       label: 'Creditos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.monitor_heart_outlined),
+      icon: Image.asset('assets/servicios.png', width: 24, height: 24),
       label: 'Servicios',
     ),
   ];
+
 
  Widget _buildProductCard(Product product) {
   return Card(
@@ -407,18 +408,43 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _menuItems,
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white, 
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: const Border(
+            //top: BorderSide(color: Colors.black, width: 1.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 10.0,
+              offset: Offset(0, -2)
+            )
+          ],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(14.5),
+            topRight: Radius.circular(14.5),
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(14.5),
+            topRight: Radius.circular(14.5),
+          ),
+          child: BottomNavigationBar(
+            items: _menuItems,
+            currentIndex: _currentIndex,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            backgroundColor: Colors.white,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+          ),
+        ),
       ),
     );
   }

@@ -71,6 +71,15 @@ flutter:
     - assets/creditos.png
     - assets/servicios.png
     - assets/favoritos.png
+    - assets/compras.png
+    - assets/acerca.png
+    - assets/ayuda.png
+    - assets/notificaciones.png
+    - assets/contraseña.png
+    - assets/direccion.png
+    - assets/datos.png
+    - assets/foto.png
+    - assets/borrar.png
 
   fonts:
     - family: Poppins

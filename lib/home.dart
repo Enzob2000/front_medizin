@@ -5,6 +5,7 @@ import 'categorias.dart';
 import 'busqueda.dart';
 import 'filtros.dart';
 import 'busqueda2.dart';
+import 'menudesplegado.dart';
 
 void main() {
   runApp(Homes());
@@ -363,23 +364,23 @@ class _SearchScreenState extends State<SearchScreen> {
 
   final List<BottomNavigationBarItem> _menuItems = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.home_outlined),
+      icon: Image.asset('assets/inicio.png', width: 24, height: 24),
       label: 'Inicio',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.category_outlined),
+      icon: Image.asset('assets/categoria.png', width: 24, height: 24),
       label: 'Categoría',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.favorite_border),
+      icon: Image.asset('assets/favoritos.png', width: 24, height: 24),
       label: 'Favoritos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.credit_card_outlined),
+      icon: Image.asset('assets/creditos.png', width: 24, height: 24),
       label: 'Creditos',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.monitor_heart_outlined),
+      icon: Image.asset('assets/servicios.png', width: 24, height: 24),
       label: 'Servicios',
     ),
   ];
@@ -423,7 +424,12 @@ class _SearchScreenState extends State<SearchScreen> {
             padding: const EdgeInsets.only(top: 25.0),
             child: IconButton(
               icon: Icon(Icons.account_circle_outlined, color: Color.fromARGB(255, 0, 87, 255)),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MenuD()),
+                  );
+              },
             ),
           ),
           Padding(
@@ -468,15 +474,13 @@ class _SearchScreenState extends State<SearchScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Flexible(
-                    child: Padding(
+                   Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
                         icon: Icon(Icons.star_border_outlined, color: Colors.blue, size: 12),
                         label: Text('Más vendidos', 
-                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
                         onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Busqueda2()),
@@ -488,15 +492,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
+                  Spacer(),
+                  Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
                         icon: Icon(Icons.location_on_outlined, color: Colors.blue, size: 12,),
                         
                         label: Text('Carúpano - 5km', 
-                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
                         onPressed: () {
                             _abrirModalBottomSheet(context);
                         },
@@ -506,15 +509,14 @@ class _SearchScreenState extends State<SearchScreen> {
                            visualDensity: VisualDensity.compact,
                         ),
                       ),
-                    ),
                   ),
-                  Flexible(
-                    child: Padding(
+                  Spacer(),
+                     Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
                         icon: Icon(Icons.tune, color: Colors.blue, size: 12),
                         label: Text('Filtrar búsqueda', 
-                             style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
                         onPressed: () {
                           Navigator.push(
                     context,
@@ -528,7 +530,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                     ),
-                  ),
+                  
                 ],
               ),
             ),
@@ -794,19 +796,44 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _menuItems,
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white, 
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: const Border(
+            //top: BorderSide(color: Colors.black, width: 1.0),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 10.0,
+              offset: Offset(0, -2)
+            )
+          ],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(14.5),
+            topRight: Radius.circular(14.5),
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(14.5),
+            topRight: Radius.circular(14.5),
+          ),
+          child: BottomNavigationBar(
+            items: _menuItems,
+            currentIndex: _currentIndex,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            backgroundColor: Colors.white,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+          ),
+        ),
+      )
     );
   }
 }
@@ -855,6 +882,7 @@ Widget _buildSocialButton({
                     fontWeight: FontWeight.bold,
                     fontSize: 12.0,
                     color: Color.fromARGB(255, 139, 139, 139),
+                    fontFamily: 'Poppins',
                   ),
                 ),
                 TextSpan(
@@ -864,6 +892,7 @@ Widget _buildSocialButton({
                     fontSize: 18.0,
                     color: Color.fromARGB(255, 0, 87, 255),
                     decoration: TextDecoration.none,
+                    fontFamily: 'Poppins',
                   ),
                 ),
                 const TextSpan(text: '.'),
@@ -924,7 +953,7 @@ Widget _buildSocialButton({
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 12.0,
-                    color: Color.fromARGB(255, 139, 139, 139),
+                    color: Color.fromARGB(255, 139, 139, 139),fontFamily: 'Poppins',
                   ),
                 ),
                 TextSpan(
@@ -933,7 +962,7 @@ Widget _buildSocialButton({
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
                     color: Color.fromARGB(255, 0, 87, 255),
-                    decoration: TextDecoration.none,
+                    decoration: TextDecoration.none,fontFamily: 'Poppins',
                   ),
                 ),
                 const TextSpan(text: '.'),
@@ -968,7 +997,7 @@ void _abrirModalBottomSheet(BuildContext context) {
               )
             ],
           ),
-          height: MediaQuery.of(context).size.height * 0.85,
+          height: MediaQuery.of(context).size.height * 0.86,
           width: MediaQuery.of(context).size.width * 0.95,
           padding: EdgeInsets.all(15),
           child: Column(
@@ -998,7 +1027,7 @@ void _abrirModalBottomSheet(BuildContext context) {
                         child: Text(
                           'Buscar por cuidad, localidad o código postal',
                           style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w900, color: Colors.black,
-    decoration: TextDecoration.none,),
+    decoration: TextDecoration.none,fontFamily: 'Poppins',),
                           textAlign: TextAlign.left,
                           
                         ),

@@ -374,8 +374,15 @@ class _MedicineDetailScreenState extends State<MedicineDetailScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           border: const Border(
-            top: BorderSide(color: Colors.black, width: 1.0),
+            //top: BorderSide(color: Colors.black, width: 1.0),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 10.0,
+              offset: Offset(0, -2)
+            )
+          ],
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(14.5),
             topRight: Radius.circular(14.5),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_medizin/home.dart';
-import 'inicio.dart'; // 
+import 'home.dart';
+import 'miscompras.dart'; // 
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Inicio(), // ¡Pantalla inicial cambiada a inicio.dart!
+      home: Compras(), // ¡Pantalla inicial cambiada a inicio.dart!
     );
   }
 }
