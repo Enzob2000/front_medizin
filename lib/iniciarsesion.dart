@@ -142,6 +142,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hintStyle: TextStyle(color: Colors.grey[400]),
                         filled: true,
                         fillColor: Colors.grey[200],
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.visibility_off_outlined, color: Color.fromARGB(255, 114, 109, 109),size: 25,),
+                          onPressed: () {},
+                        ),
                         contentPadding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 24.0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(19.0),

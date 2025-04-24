@@ -396,26 +396,41 @@ void initState() {
     
   }
 }
+int _currentIndex = 0;
+Color getcolor(int index) {
+    return _currentIndex == index ? Colors.blue : Colors.grey;
+  }
 
-final List<BottomNavigationBarItem> _menuItems = [
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/inicio.png', width: 24, height: 24),
-      label: 'Inicio',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/categoria.png', width: 24, height: 24),
-      label: 'Categoría',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/favoritos.png', width: 24, height: 24),
-      label: 'Favoritos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/creditos.png', width: 24, height: 24),
-      label: 'Creditos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/servicios.png', width: 24, height: 24),
-      label: 'Servicios',
-    ),
-  ];
+  List<BottomNavigationBarItem> get _menuItems {
+    return [
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/inicio.png',
+          width: 24,
+          height: 24,
+          color: getcolor(0),
+        ),
+        label: 'Inicio',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/categoria.png', width: 24, height: 24,
+        color: getcolor(1)),
+        label: 'Categoría',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/favoritos.png', width: 24, height: 24,
+        color: getcolor(2)),
+        label: 'Favoritos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/creditos.png', width: 24, height: 24,
+        color: getcolor(3)),
+        label: 'Creditos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/servicios.png', width: 24, height: 24,
+        color: getcolor(4)),
+        label: 'Servicios',
+      ),
+    ];
+  }

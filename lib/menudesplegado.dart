@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:front_medizin/ayuda.dart';
 import 'home.dart';
 import 'miscompras.dart';
+import 'misdatos.dart';
+import 'midireccion.dart';
+import 'cambiarcontraseña.dart';
+import 'notificaciones.dart';
 
 void main() {
   runApp(const MenuD());
@@ -74,28 +79,43 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
 
- final List<BottomNavigationBarItem> _menuItems = [
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/inicio.png', width: 24, height: 24),
-      label: 'Inicio',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/categoria.png', width: 24, height: 24),
-      label: 'Categoría',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/favoritos.png', width: 24, height: 24),
-      label: 'Favoritos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/creditos.png', width: 24, height: 24),
-      label: 'Creditos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/servicios.png', width: 24, height: 24),
-      label: 'Servicios',
-    ),
-  ];
+ Color getcolor(int index) {
+    return _currentIndex == index ? Colors.blue : Colors.grey;
+  }
+
+  List<BottomNavigationBarItem> get _menuItems {
+    return [
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/inicio.png',
+          width: 24,
+          height: 24,
+          color: getcolor(0),
+        ),
+        label: 'Inicio',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/categoria.png', width: 24, height: 24,
+        color: getcolor(1)),
+        label: 'Categoría',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/favoritos.png', width: 24, height: 24,
+        color: getcolor(2)),
+        label: 'Favoritos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/creditos.png', width: 24, height: 24,
+        color: getcolor(3)),
+        label: 'Creditos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/servicios.png', width: 24, height: 24,
+        color: getcolor(4)),
+        label: 'Servicios',
+      ),
+    ];
+  }
 
 
 
@@ -235,7 +255,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     leading: Image.asset('assets/datos.png', width: 24, height: 24),
                     trailing: const Icon(Icons.arrow_forward_outlined),
                     onTap: () {
-                      // Navegar a la pantalla correspondiente
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Datos()),
+                      );
                     },
                   ),
                   const Divider(height: 7, thickness: 1),
@@ -244,7 +267,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     leading: Image.asset('assets/direccion.png', width: 24, height: 24),
                     trailing: const Icon(Icons.arrow_forward_outlined),
                     onTap: () {
-                      // Navegar a la pantalla correspondiente
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Direccion()),
+                      );
                     },
                   ),
                   const Divider(height: 7, thickness: 1),
@@ -262,7 +288,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     leading: Image.asset('assets/contraseña.png', width: 24, height: 24),
                     trailing: const Icon(Icons.arrow_forward_outlined),
                     onTap: () {
-                      // Navegar a la pantalla correspondiente
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CambiarC()),
+                      );
                     },
                   ),
                   const Divider(height: 7, thickness: 1),
@@ -271,7 +300,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     leading: Image.asset('assets/notificaciones.png', width: 24, height: 24),
                     trailing: const Icon(Icons.arrow_forward_outlined),
                     onTap: () {
-                      // Navegar a la pantalla correspondiente
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Notificaciones()),
+                      );
                     },
                   ),
                   const Divider(height: 7, thickness: 1),
@@ -280,7 +312,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     leading: Image.asset('assets/ayuda.png', width: 24, height: 24),
                     trailing: const Icon(Icons.arrow_forward_outlined),
                     onTap: () {
-                      // Navegar a la pantalla correspondiente
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Ayuda()),
+                      );
                     },
                   ),
                   const Divider(height: 7, thickness: 1),

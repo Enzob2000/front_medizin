@@ -80,7 +80,8 @@ flutter:
     - assets/datos.png
     - assets/foto.png
     - assets/borrar.png
-
+    - assets/settings.png
+    - assets/contactar.png
   fonts:
     - family: Poppins
       fonts:

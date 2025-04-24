@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_medizin/menudesplegado.dart';
 import 'home.dart';
 
 void main() {
@@ -62,40 +63,46 @@ class _SearchScreenState extends State<SearchScreen> {
     'assets/producto3.png',
   ];
 
-  final List<Product> products = const [
-    Product(categoria: 'Farmacia y Salud', name: 'Acetaminofén 650Mg X10 Tabletas', imagePath: 'assets/acetaminofen_650mg.png', link: 'Farmacia()', precioAnt: 'Bs. 50,99',precioDesc: 'Bs. 35,99'),
-    Product(categoria: 'Farmacia y Salud', name: 'Acetaminofén 500mg 10Tabletas Genven', imagePath: 'assets/acetaminofen_500mg.png', link: '', precioAnt: 'Bs. 60,99',precioDesc: 'Bs. 45,99'),
-    Product(categoria: 'Farmacia y Salud', name: 'Torsilax 10 Comprimidos', imagePath: 'assets/torsilax.png', link: '', precioAnt: 'Bs. 90,99',precioDesc: 'Bs. 69,99'),
-    Product(categoria: 'Farmacia y Salud', name: 'Atamel Acetaminofén 500 mg x 20 Tabletas', imagePath: 'assets/atamel.png', link: '', precioAnt: 'Bs. 150,99',precioDesc: 'Bs. 120,99'),
-    Product(categoria: 'Farmacia y Salud', name: 'Torsilax 10 Comprimidos', imagePath: 'assets/torsilax.png', link: '', precioAnt: 'Bs. 90,99',precioDesc: 'Bs. 69,99'),
-    Product(categoria: 'Farmacia y Salud', name: 'Atamel Acetaminofén 500 mg x 20 Tabletas', imagePath: 'assets/atamel.png', link: '', precioAnt: 'Bs. 150,99',precioDesc: 'Bs. 120,99'),
+ 
+
+
+Color getcolor(int index) {
+    return _currentIndex == index ? Colors.blue : Colors.grey;
+  }
+
+  List<BottomNavigationBarItem> get _menuItems {
+    return [
+      BottomNavigationBarItem(
+        icon: Image.asset(
+          'assets/inicio.png',
+          width: 24,
+          height: 24,
+          color: getcolor(0),
+        ),
+        label: 'Inicio',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/categoria.png', width: 24, height: 24,
+        color: getcolor(1)),
+        label: 'Categoría',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/favoritos.png', width: 24, height: 24,
+        color: getcolor(2)),
+        label: 'Favoritos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/creditos.png', width: 24, height: 24,
+        color: getcolor(3)),
+        label: 'Creditos',
+      ),
+      BottomNavigationBarItem(
+        icon: Image.asset('assets/servicios.png', width: 24, height: 24,
+        color: getcolor(4)),
+        label: 'Servicios',
+      ),
     ];
-
-
-
- final List<BottomNavigationBarItem> _menuItems = [
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/inicio.png', width: 24, height: 24),
-      label: 'Inicio',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/categoria.png', width: 24, height: 24),
-      label: 'Categoría',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/favoritos.png', width: 24, height: 24),
-      label: 'Favoritos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/creditos.png', width: 24, height: 24),
-      label: 'Creditos',
-    ),
-    BottomNavigationBarItem(
-      icon: Image.asset('assets/servicios.png', width: 24, height: 24),
-      label: 'Servicios',
-    ),
-  ];
-
+  }
 
 
   @override
@@ -116,7 +123,7 @@ class _SearchScreenState extends State<SearchScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Homes()),
+          MaterialPageRoute(builder: (context) => MenuD()),
         );
       },
       child: Row(
