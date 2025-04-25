@@ -34,16 +34,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(45),
+        
       ),
+      
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
@@ -52,7 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 227, 227, 227),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,22 +58,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   width: 24,
                   height: 24,
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 22),
                 Text(
                   label,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.black87,
+                    color: Color.fromARGB(255, 114, 109, 109),
+                    fontWeight: FontWeight.w600
                   ),
                 ),
               ],
             ),
-            const Icon(
-              Icons.arrow_forward,
-              size: 25,
-              color: Color.fromARGB(255, 0, 0, 0),
-
-            ),
+            
           ],
         ),
       ),
@@ -125,7 +115,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 32.0),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -133,91 +123,126 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   topRight: Radius.circular(50.0),
                 ),
               ),
-              child: SingleChildScrollView(
+              child: SingleChildScrollView(padding: const EdgeInsets.symmetric(horizontal: 0.0),
                 child: Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Correo electrónico',
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.visibility_off_outlined, color: Color.fromARGB(255, 114, 109, 109),size: 25,),
-                          onPressed: () {},
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 24.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
+                    Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+  child: Column(
+    children: [
+      TextField(
+        decoration: InputDecoration(
+          hintText: 'Correo electrónico',
+          hintStyle: TextStyle(color: Colors.grey[400]),
+          filled: true,
+          fillColor: Colors.grey[200],
+          contentPadding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 24.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(19.0),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+      const SizedBox(height: 20),
+      TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          hintText: 'Contraseña',
+          hintStyle: TextStyle(color: Colors.grey[400]),
+          filled: true,
+          fillColor: Colors.grey[200],
+          suffixIcon: IconButton(
+            icon: Icon(
+              Icons.visibility_off_outlined, 
+              color: Color.fromARGB(255, 114, 109, 109),
+              size: 25,
+            ),
+            onPressed: () {},
+          ),
+          contentPadding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 24.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(19.0),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+      const SizedBox(height: 0),
+      Align(
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: () {},
+          child: const Text(
+            'Olvidé mi contraseña',
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 10),
+      SizedBox(
+        width: double.infinity,
+        height: 60,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Homes()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 0, 87, 255),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(19.0),
+            ),
+          ),
+          child: const Text(
+            'Iniciar Sesión',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.white,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ),
+      ),
+    ],
+  ),
+),
                     const SizedBox(height: 20),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Contraseña',
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        contentPadding: const EdgeInsets.symmetric(vertical: 19.0, horizontal: 24.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(19.0),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
+                    Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Divider(
+                    color: Colors.grey, // Color de la línea
+                    thickness: 1,       // Grosor de la línea
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    'Iniciar sesión con',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
                     ),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Olvidé mi contraseña',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Homes()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 0, 87, 255),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(19.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'Iniciar Sesión',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Iniciar sesión con',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: Colors.grey, // Color de la línea
+                    thickness: 1,       // Grosor de la línea
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+  child: Column(
+    children: [
+                    const SizedBox(height: 30),
                     _buildSocialButton(
                       imagePath: 'assets/google.png',
                       label: 'Continue with Google',
@@ -253,6 +278,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                     ),
+    ],
+  ),),
                   ],
                 ),
               ),

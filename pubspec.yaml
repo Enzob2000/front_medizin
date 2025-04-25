@@ -18,12 +18,20 @@ dev_dependencies:
   rename: ^2.1.0
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
-  change_app_package_name: ^1.1.0  # Paquete para cambiar nombre del paquete
+  change_app_package_name: ^1.1.0 
+  flutter_native_splash: ^2.4.6 # Paquete para cambiar nombre del paquete
+
+flutter_native_splash:
+  color: "#19d8e9"
+  image: assets/favicon1.png
+  android_12:
+    image: assets/favicon1.png
+    color: "#19d8e9"  # Paquete para cambiar nombre del paquete
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/favicon.png"
+  image_path: "assets/favicon1.png"
   adaptive_icon_background: "#19D8EA"
 
 flutter:
@@ -31,7 +39,7 @@ flutter:
     - assets/logo.png
     - assets/logoblanco.png
     - assets/bandera.png
-    - assets/favicon.png
+    - assets/favicon1.png
     - assets/google.png
     - assets/face.png
     - assets/producto1.png

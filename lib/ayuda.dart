@@ -58,7 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
   int _currentIndex = 0;
   
 Color getcolor(int index) {
-    return _currentIndex == index ? Colors.blue : Colors.grey;
+    return _currentIndex == index ? Color.fromARGB(255,0,87,255) : Color.fromARGB(255, 67, 67, 67);
   }
 
   List<BottomNavigationBarItem> get _menuItems {
@@ -163,7 +163,7 @@ Color getcolor(int index) {
     borderRadius: BorderRadius.circular(19), // Bordes redondeados
   ),
   margin: const EdgeInsets.symmetric(vertical: 4), // Espaciado vertical
- padding: EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15), // Espaciado vertical
+ padding: EdgeInsets.only(top: 6, bottom: 6, right: 15, left: 15), // Espaciado vertical
   child:ListTile(
                     title: Text("Contactar a Soporte",style: const TextStyle( color: Color.fromARGB(255, 0, 87, 255), fontSize: 18)),
                     trailing: Image.asset('assets/contactar.png', width: 18, height: 18,),
@@ -182,7 +182,7 @@ Color getcolor(int index) {
     borderRadius: BorderRadius.circular(19), // Bordes redondeados
   ),
   margin: const EdgeInsets.symmetric(vertical: 4),
-  padding: EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15), // Espaciado vertical
+  padding: EdgeInsets.only(top: 6, bottom: 6, right: 15, left: 15), // Espaciado vertical
   child:ListTile(
                     title: Text("Problemas al comprar",style: const TextStyle( color: Color.fromARGB(255, 0, 87, 255), fontSize: 18)),
                     trailing: const Icon(Icons.info_outline_rounded, color: Color.fromARGB(255, 0, 87, 255)),
@@ -199,7 +199,7 @@ Color getcolor(int index) {
     borderRadius: BorderRadius.circular(19), // Bordes redondeados
   ),
   margin: const EdgeInsets.symmetric(vertical: 4), // Espaciado vertical
-  padding: EdgeInsets.only(top: 10, bottom: 10, right: 15, left: 15), // Espaciado vertical
+  padding: EdgeInsets.only(top: 6, bottom: 6, right: 15, left: 15), // Espaciado vertical
   child:ListTile(
                     title: Text("Ayuda con mi cuenta",style: const TextStyle( color: Color.fromARGB(255, 0, 87, 255), fontSize: 18)),
                     trailing: const Icon(Icons.info_outline_rounded, color: Color.fromARGB(255, 0, 87, 255),),
@@ -211,7 +211,6 @@ Color getcolor(int index) {
                     },
                   ),
                   ),
-                  const Divider(height: 7, thickness: 1),
                 ],
               ),
             ),
@@ -242,8 +241,8 @@ Color getcolor(int index) {
           child: BottomNavigationBar(
             items: _menuItems,
             currentIndex: _currentIndex,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: Color.fromARGB(255, 0, 87, 255),
+            unselectedItemColor: Color.fromARGB(255, 67, 67, 67),
             backgroundColor: Colors.white,
             onTap: (index) {
               setState(() {

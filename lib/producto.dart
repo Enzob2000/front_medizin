@@ -112,7 +112,7 @@ class _MedicineDetailScreenState extends State<MedicineDetailScreen> {
   final PageController _pageController = PageController(viewportFraction: 0.8);
 
   Color getcolor(int index) {
-    return _currentIndex == index ? Colors.blue : Colors.grey;
+    return _currentIndex == index ? Color.fromARGB(255,0,87,255) : Color.fromARGB(255, 67, 67, 67);
   }
 
   List<BottomNavigationBarItem> get _menuItems {
@@ -411,8 +411,8 @@ class _MedicineDetailScreenState extends State<MedicineDetailScreen> {
           child: BottomNavigationBar(
             items: _menuItems,
             currentIndex: _currentIndex,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: Color.fromARGB(255, 0, 87, 255),
+            unselectedItemColor: Color.fromARGB(255, 67, 67, 67),
             backgroundColor: Colors.white,
             onTap: (index) {
               setState(() {

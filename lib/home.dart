@@ -104,8 +104,9 @@ class CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 80,
+      child: SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -141,6 +142,7 @@ class CategoryButton extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
@@ -202,22 +204,47 @@ Widget _buildProductCard(Product product) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Container(
-                width: 130,
-                height: 130,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[200],
+        child: Container(
+          width: 130,
+          height: 130,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.grey[200],
+          ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  product.imagePath,
+                  width: 130,
+                  height: 130,
+                  fit: BoxFit.cover,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    product.imagePath,
-                    fit: BoxFit.cover,
+              ),
+              Positioned(
+                top: 1,
+                right: 0,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.favorite_border,
+                    color: Color.fromARGB(255, 0, 87, 255),
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    // Lógica para marcar como favorito
+                  },
+                  style: IconButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(5, 5),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 ),
               ),
-            ),
+            ],
+          ),
+        ),
+      ),
             SizedBox(height: 2),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -364,7 +391,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
 Color getcolor(int index) {
-    return _currentIndex == index ? Colors.blue : Colors.grey;
+    return _currentIndex == index ? Color.fromARGB(255,0,87,255) : Color.fromARGB(255, 67, 67, 67);
   }
 
   List<BottomNavigationBarItem> get _menuItems {
@@ -494,9 +521,9 @@ Color getcolor(int index) {
                    Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.star_border_outlined, color: Colors.blue, size: 12),
+                        icon: Icon(Icons.star_border_outlined, color: Color.fromARGB(255, 81, 110, 250), size: 12),
                         label: Text('Más vendidos', 
-                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, color: Color.fromARGB(255, 81, 110, 250), fontWeight: FontWeight.w300)),
                         onPressed: () {Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Busqueda2()),
@@ -512,10 +539,10 @@ Color getcolor(int index) {
                   Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.location_on_outlined, color: Colors.blue, size: 12,),
+                        icon: Icon(Icons.location_on_outlined, color: Color.fromARGB(255, 81, 110, 250), size: 12,),
                         
                         label: Text('Carúpano - 5km', 
-                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, color: Color.fromARGB(255, 81, 110, 250), fontWeight: FontWeight.w300)),
                         onPressed: () {
                             _abrirModalBottomSheet(context);
                         },
@@ -530,9 +557,9 @@ Color getcolor(int index) {
                      Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: TextButton.icon(
-                        icon: Icon(Icons.tune, color: Colors.blue, size: 12),
+                        icon: Icon(Icons.tune, color: Color.fromARGB(255, 81, 110, 250), size: 12),
                         label: Text('Filtrar búsqueda', 
-                             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300)),
+                             style: TextStyle(fontSize: 11, color: Color.fromARGB(255, 81, 110, 250), fontWeight: FontWeight.w300)),
                         onPressed: () {
                           Navigator.push(
                     context,
@@ -562,7 +589,7 @@ Color getcolor(int index) {
                 ),
               ),
             ),
-            SizedBox(height: 15.0),
+            SizedBox(height: 5.0),
             Container(
   color: Color.fromARGB(255, 25, 216, 234),
   child: Column(
@@ -627,7 +654,7 @@ Color getcolor(int index) {
                 ]
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 0.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: GridView.builder(
@@ -666,7 +693,7 @@ Color getcolor(int index) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, top: 16.0, right: 15.0, bottom: 8.0),
+              padding: const EdgeInsets.only(left: 15.0, top: 6.0, right: 15.0, bottom: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -689,7 +716,7 @@ Color getcolor(int index) {
                 ]
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 0.0),
             
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -765,7 +792,7 @@ Color getcolor(int index) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, top: 16.0, right: 25.0, bottom: 8.0),
+              padding: const EdgeInsets.only(left: 15.0, top: 0.0, right: 25.0, bottom: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -838,8 +865,8 @@ Color getcolor(int index) {
           child: BottomNavigationBar(
             items: _menuItems,
             currentIndex: _currentIndex,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: Color.fromARGB(255, 0, 87, 255),
+            unselectedItemColor: Color.fromARGB(255, 67, 67, 67),
             backgroundColor: Colors.white,
             onTap: (index) {
               setState(() {
