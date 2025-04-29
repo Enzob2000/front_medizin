@@ -90,6 +90,11 @@ flutter:
     - assets/borrar.png
     - assets/settings.png
     - assets/contactar.png
+    - assets/farmacia1.jpg
+    - assets/farmacia2.jpg
+    - assets/farmacia3.png
+    - assets/farmacia4.jpg
+
   fonts:
     - family: Poppins
       fonts:

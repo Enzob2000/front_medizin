@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_medizin/farmacia.dart';
 
 void main() {
   runApp(Carrito());
@@ -33,6 +34,20 @@ class Producto {
     required this.precio2,
     this.cantidad = 1,
     required this.imagen,
+  });
+}
+
+class Farmacias {
+  final String Nombre;
+  final String Distancia;
+  final double Precio;
+  final String Imagen;
+
+  Farmacias({
+    required this.Nombre,
+    required this.Distancia,
+    required this.Precio,
+    required this.Imagen,
   });
 }
 
@@ -320,7 +335,9 @@ class _CarritoComprasScreenState extends State<CarritoComprasScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _abrirModalBottomSheet(context,total);
+                    },
                     style: ElevatedButton.styleFrom(
                       
                       backgroundColor: Color.fromARGB(255, 0, 87, 255),
@@ -336,14 +353,47 @@ class _CarritoComprasScreenState extends State<CarritoComprasScreen> {
                         color: Colors.white,
                       ),
                     ),Spacer(),
-                    Text(
-                      '${total.toStringAsFixed(2)} Bs',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                     RichText(
+  text: TextSpan(
+    style: TextStyle(
+      fontSize: 14.0,
+      color: Color.fromARGB(255, 25, 216, 234),
+    ),
+    children: [
+      WidgetSpan(
+        child: SizedBox(
+          height: 30, // Altura fija para alinear
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Total:   ',
+              style: TextStyle(
+                color: Color.fromARGB(255, 25, 216, 234),
+              ),
+            ),
+          ),
+        ),
+      ),
+      WidgetSpan(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+            color: Color.fromARGB(255, 45, 59, 142),
+            child: Text(
+              '${total.toStringAsFixed(2)} Bs',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                fontSize: 14.0,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  ),
+)
                     ],),
                   ),
                 ),
@@ -498,4 +548,649 @@ class _QuantitySelectorState extends State<QuantitySelector> {
       ),
     );
   }
+}
+
+
+void _abrirModalBottomSheet(BuildContext context, double total) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Header con título y botón cerrar
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Verificar',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 87, 255)
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.close, color: Color.fromARGB(255, 45, 59, 142),size: 30,),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+          ),
+          Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
+          // Lista de opciones
+          Flexible(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              children: [
+                // Entrega - Pick Up
+                _buildOptionRow(
+                  title: 'Entrega',
+                  value: 'Pick Up',
+                  tipo: 1,
+                  onTap: () => _selectDeliveryMethod(context),
+                ),
+                
+                Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
+                
+                // Método de pago
+                _buildOptionRow(
+                  title: 'Método de pago',
+                  value: 'Pago movil',
+                  tipo: 1,
+                  onTap: () => {},
+                ),
+                
+                Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
+                
+                _buildOptionRow(
+                  title: 'Código de descuento',
+                  value: 'Aplicar',
+                  tipo: 1,
+                  onTap: () {}),
+                
+                
+                Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
+                
+                _buildOptionRow(
+                  title: 'Costo Total',
+                  value: '${total.toStringAsFixed(2)} Bs',
+                  tipo: 2,
+                  onTap: () {}),
+
+                Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
+              ],
+            ),
+          ),
+          
+          // Términos y condiciones + Botón
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                child: RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    style: TextStyle(color: Color.fromARGB(255, 0, 87, 255), fontSize: 14),
+                    children: [
+                      TextSpan(text: 'Al realizar un pedido, '),
+                      TextSpan(
+                        text: 'usted acepta',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(text: ' nuestros\n'),
+                      TextSpan(
+                        text: 'Términos y condiciones',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  height: 65,
+                  child: ElevatedButton(
+                    onPressed: () => _processPayment(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(
+                      'Pagar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                 SizedBox(height: 20),
+              ],
+              
+            ),
+            
+          ),
+          
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildOptionRow({
+  required String title,
+  required String value,
+  required VoidCallback onTap,
+  required int tipo,
+}) {
+  return TextButton(
+    onPressed: onTap,
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.symmetric(vertical: 15),
+      alignment: Alignment.centerLeft,
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 18,
+            color: Color.fromARGB(255, 0, 87, 255),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        (tipo == 1) 
+              ? Row(
+          children: [
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(255, 45, 59, 142),
+              ),
+            ),
+            SizedBox(width: 5),
+            Icon(Icons.chevron_right, color: Color.fromARGB(255, 45, 59, 142),size: 25,),
+          ],
+        )
+              : Row(
+          children: [
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(255, 45, 59, 142),
+                fontWeight: FontWeight.w600
+              ),
+            ),
+            SizedBox(width: 5),
+            Icon(Icons.chevron_right, color: Color.fromARGB(255, 45, 59, 142),size: 25,),
+          ],
+        )
+        
+      ],
+    ),
+  );
+}
+
+// Funciones de ejemplo para las acciones
+void _selectDeliveryMethod(BuildContext context) {
+  // Variable para rastrear el método de entrega seleccionado
+  bool isDeliverySelected = false;
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // ... (Título y otros widgets anteriores)
+               Padding(
+            padding: EdgeInsets.only(top: 30, right: 20, left: 20, bottom: 20),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: 
+                Text(
+                  'Tipo de Entrega',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 0, 87, 255)
+                  ),
+                ),
+            ),
+          ),
+          SizedBox(height: 5,),
+              // Botón Pick Up
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 67.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isDeliverySelected = false; // Cambia a Pick Up
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) => isDeliverySelected 
+                          ? const Color.fromARGB(255, 227, 227, 227) 
+                          : const Color.fromARGB(255, 25, 216, 234),
+                      ),
+                      // ... (otros estilos)
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(19.0),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      'Pick Up',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isDeliverySelected 
+                          ? const Color.fromARGB(255, 114, 109, 109) 
+                          : const Color.fromARGB(255, 76, 76, 76),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25.0),
+
+              // Botón Delivery
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 67.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isDeliverySelected = true; // Cambia a Delivery
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) => isDeliverySelected 
+                          ? const Color.fromARGB(255, 25, 216, 234) 
+                          : const Color.fromARGB(255, 227, 227, 227),
+                      ),
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19.0),
+                      ),
+                     ),
+                      // ... (otros estilos)
+                    ),
+                    child: Text(
+                      'Delivery',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isDeliverySelected 
+                          ? const Color.fromARGB(255, 76, 76, 76) 
+                          : const Color.fromARGB(255, 114, 109, 109),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 150),
+
+              // Botón inferior dinámico (Aceptar/Siguiente)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 65,
+                  child: ElevatedButton(
+                    onPressed: () => _processPayment(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(
+                      isDeliverySelected ? 'Siguiente' : 'Aceptar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 50),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
+void _processPayment(BuildContext context) {
+  
+  int? selectedFarmaciaIndex;
+
+  List<Farmacias> farmacias = [
+    Farmacias(
+      Nombre: 'Farmacia Cuida de tu salud',
+      Distancia: '0.5km',
+      Precio: 272.93,
+      Imagen: 'assets/farmacia1.jpg',
+    ),
+    Farmacias(
+      Nombre: 'Farmacia Cuida de tu salud',
+      Distancia: '0.9km',
+      Precio: 260.51,
+      Imagen: 'assets/farmacia2.jpg',
+    ),
+    Farmacias(
+      Nombre: 'Farmacia Cuida de tu salud',
+      Distancia: '1.2km',
+      Precio: 286.10,
+      Imagen: 'assets/farmacia3.png',
+    ),
+    Farmacias(
+      Nombre: 'Farmacia Cuida de tu salud',
+      Distancia: '1.5km',
+      Precio: 311.69,
+      Imagen: 'assets/farmacia4.jpg',
+    ),
+  ];
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Importante para evitar el error
+            children: [
+              // Título
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Elige tu farmacia',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 0, 87, 255),
+                    ),
+                  ),
+                ),
+              ),
+
+              // Lista de farmacias (sin Expanded)
+              Container(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.6, // Altura máxima
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true, // Para que se ajuste al contenido
+                  physics: ClampingScrollPhysics(), // Evita scroll infinito
+                  itemCount: farmacias.length,
+                  itemBuilder: (context, index) {
+                    final farmacia = farmacias[index];
+                    final isSelected = index == selectedFarmaciaIndex;
+                    return Card(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(
+                      color: Color.fromARGB(255, 139, 139, 139),
+                      width: 1,
+                    )
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  elevation: 0,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 105,
+                          height: 115,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              image: AssetImage(farmacia.Imagen),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 25),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [SizedBox(height: 10),
+                                          Row(
+                                            children: const [
+                                              Icon(Icons.star, color: Colors.amber, size: 14),
+                                              SizedBox(width: 4),
+                                              Icon(Icons.star, color: Colors.amber, size: 14),
+                                              SizedBox(width: 4),
+                                              Icon(Icons.star, color: Colors.amber, size: 14),
+                                              SizedBox(width: 4),
+                                              Icon(Icons.star, color: Colors.amber, size: 14),
+                                              SizedBox(width: 4),
+                                              Icon(Icons.star, color: Colors.amber, size: 14),
+                                              SizedBox(width: 8),
+                                              Text('5.0', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+                                              
+                                            ],
+                                          ),
+                                          SizedBox(height: 0),
+                                          Text(
+                                            farmacia.Nombre,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 14,
+                                              color: Color.fromARGB(255, 67, 67, 67),
+                                            ),
+                                            softWrap: true,
+                                            overflow: TextOverflow.visible,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 15),
+                                    Container(
+                                      height: 65,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Material(
+                                          type: MaterialType.transparency,
+                                          child: InkWell(
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(5),
+                                              bottomRight: Radius.circular(5),
+                                            ),
+                                            onTap: () {
+                                              setState(() {
+                                                //productos.removeAt(index);
+                                              });
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 0),
+                                              child: Icon(
+                                                Icons.favorite_border_outlined,
+                                                color: Color.fromARGB(255, 0, 87, 255),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 0),
+                              Padding(
+                                padding: EdgeInsets.all(0),
+                                child: 
+                                    Text(
+                                      'Distancia: ${farmacia.Distancia}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 8,
+                                        color: Color.fromARGB(255, 114, 109, 109),
+                                      ),
+                                    ),
+                              ),
+                              SizedBox(height: 0),
+                              Padding(
+                                padding: EdgeInsets.all(0),
+                                child: 
+                                    Text(
+                                      'Bs. ${farmacia.Precio}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Color.fromARGB(255, 0, 87, 255),
+                                      ),
+                                    ),
+                              ),
+                              SizedBox(height: 0),
+                              Padding(
+                padding: EdgeInsets.symmetric( vertical: 3),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {setState(() {
+                            selectedFarmaciaIndex = isSelected ? null : index;
+                          });},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isSelected
+                              ? Color.fromARGB(255, 227, 227, 227) // Color gris si está seleccionado
+                              : Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(9),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                    ),
+                    child: 
+                        Text(
+                          isSelected ? "Elegido" : "Elegir",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: isSelected 
+                            ? Color.fromARGB(255, 114, 109, 109) 
+                            : Colors.white,
+                          ),
+                        ),
+                        
+                  ),
+                ),
+              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+                  },
+                ),
+              ),
+
+              // Botón de pago
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 19),
+                    ),
+                    child: 
+                        Text(
+                          'Aceptar',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        );
+      },
+    ),
+  );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:front_medizin/carritodecompras.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'categorias.dart';
 import 'busqueda.dart';
@@ -479,7 +480,10 @@ Color getcolor(int index) {
             padding: const EdgeInsets.only(top: 25.0, right: 10.0),
             child: IconButton(
               icon: Icon(Icons.shopping_cart_outlined, color: Color.fromARGB(255, 0, 87, 255)),
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Carrito()),
+                  );},
             ),
           ),
         ],
