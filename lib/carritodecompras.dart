@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_medizin/farmacia.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(Carrito());
@@ -613,7 +614,7 @@ void _abrirModalBottomSheet(BuildContext context, double total) {
                   title: 'Método de pago',
                   value: 'Pago movil',
                   tipo: 1,
-                  onTap: () => {},
+                  onTap: () => _selectMetodoPago(context,total),
                 ),
                 
                 Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
@@ -909,6 +910,385 @@ void _selectDeliveryMethod(BuildContext context) {
     ),
   );
 }
+
+
+
+
+void _selectMetodoPago(BuildContext context,double total) {
+  // Variable para rastrear el método de entrega seleccionado
+  int isDeliverySelected = 0;
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // ... (Título y otros widgets anteriores)
+               Padding(
+            padding: EdgeInsets.only(top: 30, right: 20, left: 20, bottom: 20),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: 
+                Text(
+                  'Tipo de Pago',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 0, 87, 255)
+                  ),
+                ),
+            ),
+          ),
+          SizedBox(height: 5,),
+              // Botón Pick Up
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 67.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isDeliverySelected = 1; // Cambia a Pick Up
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) => isDeliverySelected ==1
+                          ? const Color.fromARGB(255, 25, 216, 234) 
+                          : const Color.fromARGB(255, 227, 227, 227),
+                      ),
+                      // ... (otros estilos)
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(19.0),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      'Transferencia Bancaria',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isDeliverySelected ==1
+                          ? const Color.fromARGB(255, 114, 109, 109) 
+                          : const Color.fromARGB(255, 76, 76, 76),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25.0),
+
+              // Botón Delivery
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 67.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isDeliverySelected = 2; // Cambia a Delivery
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) => isDeliverySelected ==2
+                          ? const Color.fromARGB(255, 25, 216, 234) 
+                          : const Color.fromARGB(255, 227, 227, 227),
+                      ),
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19.0),
+                      ),
+                     ),
+                      // ... (otros estilos)
+                    ),
+                    child: Text(
+                      'Pago Móvil',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isDeliverySelected ==2
+                          ? const Color.fromARGB(255, 76, 76, 76) 
+                          : const Color.fromARGB(255, 114, 109, 109),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25.0),
+
+              // Botón Delivery
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 67.0,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isDeliverySelected = 3; // Cambia a Delivery
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) => isDeliverySelected ==3
+                          ? const Color.fromARGB(255, 25, 216, 234) 
+                          : const Color.fromARGB(255, 227, 227, 227),
+                      ),
+                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19.0),
+                      ),
+                     ),
+                      // ... (otros estilos)
+                    ),
+                    child: Text(
+                      'Ubii Pago',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: isDeliverySelected ==3
+                          ? const Color.fromARGB(255, 76, 76, 76) 
+                          : const Color.fromARGB(255, 114, 109, 109),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 120),
+
+              // Botón inferior dinámico (Aceptar/Siguiente)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 65,
+                  child: ElevatedButton(
+                    onPressed: () => _datosdePago(context,total),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(
+                      'Siguiente' ,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 50),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
+void _datosdePago(BuildContext context, double total) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,  // Esto es importante
+    backgroundColor: Colors.transparent,
+    builder: (context) => Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,  // Ajusta según el teclado
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: SingleChildScrollView(  // Permite desplazamiento cuando el teclado aparece
+          child: Column(  
+            
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Datos de Pago Móvil',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 0, 87, 255),
+                    ),
+                  ),
+                ),
+              ),
+              _buildTextField('Banco Receptor:', '0102 - Banco de venezuela', 1, context),
+              SizedBox(height: 15),
+              _buildTextField('Número de Teléfono:', '0424-8690000', 2, context),
+              SizedBox(height: 15),
+              _buildTextField('Cédula o Rif:', 'J-406112340', 2, context),
+              SizedBox(height: 15),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Monto Total:', 
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 87, 255),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text('${total.toStringAsFixed(2)} Bs',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 45, 59, 142),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 75,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      /*Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homes()),
+                      );*/
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19.0),
+                      ),
+                    ),
+                    child: Text(
+                      'Verificar pago',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),  // Espacio adicional de seguridad
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildTextField(String label, String value,int num, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 15),
+        
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Color.fromARGB(255, 139, 139, 139),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        ),
+        const SizedBox(height: 4),
+        Padding(padding: const EdgeInsets.only(left: 16.0, right: 16),
+        child: 
+        TextFormField(
+          initialValue: value,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Color.fromARGB(255, 139, 139, 139),
+            fontWeight: FontWeight.w400,
+          ),
+          decoration: InputDecoration(
+            fillColor: Color.fromARGB(255, 227, 227, 227),
+            filled: true,
+            
+            hintStyle: TextStyle(color: Color.fromARGB(255, 114, 109, 109)),
+            suffixIcon: num==2
+            ?Row(
+      mainAxisSize: MainAxisSize.min, // Para que el Row ocupe solo el espacio necesario
+      children: [
+        Text(
+          'Copiar',
+          style: TextStyle(
+            color: Color.fromARGB(255, 139, 139, 139),
+            fontSize: 14,
+            fontWeight: FontWeight.w600
+          ),
+        ),
+        IconButton(
+          icon: Image.asset(
+            'assets/copiar.png',
+            color: Color.fromARGB(255, 139, 139, 139),
+            width: 20, height: 20,
+          ),
+          onPressed: () async {
+                if (value.isNotEmpty) {
+                  await Clipboard.setData(ClipboardData(text: value));
+                  // Opcional: Mostrar mensaje de confirmación
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Texto copiado al portapapeles'),
+                      duration: Duration(seconds: 1),
+                    )
+                  );
+                }
+              },
+        ),
+      ],
+    ):null,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 35, vertical: 22),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(19),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(19),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+        ),
+      ],
+    );
+  }
+
 
 void _processPayment(BuildContext context) {
   

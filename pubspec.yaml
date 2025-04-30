@@ -94,6 +94,8 @@ flutter:
     - assets/farmacia2.jpg
     - assets/farmacia3.png
     - assets/farmacia4.jpg
+    - assets/copiar.png
+    - assets/subirarchivo.png
 
   fonts:
     - family: Poppins
