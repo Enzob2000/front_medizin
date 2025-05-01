@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:front_medizin/farmacia.dart';
 import 'package:flutter/services.dart';
+import 'registrarpago.dart';
 
 void main() {
   runApp(Carrito());
 }
-
+bool _isDeliverySelected = false;
 class Carrito extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -602,9 +603,13 @@ void _abrirModalBottomSheet(BuildContext context, double total) {
                 // Entrega - Pick Up
                 _buildOptionRow(
                   title: 'Entrega',
-                  value: 'Pick Up',
+                  value: _isDeliverySelected ? 'Delivery' : 'Pick Up',
                   tipo: 1,
-                  onTap: () => _selectDeliveryMethod(context),
+                  onTap: () =>{
+                    Navigator.pop(context),
+                    _selectDeliveryMethod(context),
+                    
+                  } 
                 ),
                 
                 Divider(height: 1, thickness: 1, color: Color.fromARGB(255, 226, 226, 226)),
@@ -654,12 +659,13 @@ void _abrirModalBottomSheet(BuildContext context, double total) {
                       TextSpan(text: 'Al realizar un pedido, '),
                       TextSpan(
                         text: 'usted acepta',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
                       ),
-                      TextSpan(text: ' nuestros\n'),
+                      TextSpan(text: ' nuestros\n',
+                        style: TextStyle(fontFamily: 'Poppins')),
                       TextSpan(
                         text: 'Términos y condiciones',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
                       ),
                     ],
                   ),
@@ -670,7 +676,7 @@ void _abrirModalBottomSheet(BuildContext context, double total) {
                   width: double.infinity,
                   height: 65,
                   child: ElevatedButton(
-                    onPressed: () => _processPayment(context),
+                    onPressed: () => _processPayment(context,1),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 0, 87, 255),
                       shape: RoundedRectangleBorder(
@@ -760,7 +766,7 @@ Widget _buildOptionRow({
 // Funciones de ejemplo para las acciones
 void _selectDeliveryMethod(BuildContext context) {
   // Variable para rastrear el método de entrega seleccionado
-  bool isDeliverySelected = false;
+  bool isDeliverySelected = _isDeliverySelected;
 
   showModalBottomSheet(
     context: context,
@@ -808,7 +814,8 @@ void _selectDeliveryMethod(BuildContext context) {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        isDeliverySelected = false; // Cambia a Pick Up
+                        isDeliverySelected = false;
+                        _isDeliverySelected = isDeliverySelected; // Cambia a Pick Up
                       });
                     },
                     style: ButtonStyle(
@@ -847,7 +854,8 @@ void _selectDeliveryMethod(BuildContext context) {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        isDeliverySelected = true; // Cambia a Delivery
+                        isDeliverySelected = true;
+                        _isDeliverySelected = isDeliverySelected;// Cambia a Delivery
                       });
                     },
                     style: ButtonStyle(
@@ -884,7 +892,15 @@ void _selectDeliveryMethod(BuildContext context) {
                   width: double.infinity,
                   height: 65,
                   child: ElevatedButton(
-                    onPressed: () => _processPayment(context),
+                    onPressed: () => {
+                      _isDeliverySelected = isDeliverySelected,
+                      if(isDeliverySelected){
+                        _ubicacion(context),
+                        
+                      }else{
+                        _processPayment(context,1),
+                      }
+                      },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 0, 87, 255),
                       shape: RoundedRectangleBorder(
@@ -893,6 +909,101 @@ void _selectDeliveryMethod(BuildContext context) {
                     ),
                     child: Text(
                       isDeliverySelected ? 'Siguiente' : 'Aceptar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 50),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+}
+
+void _ubicacion(BuildContext context) {
+  // Variable para rastrear el método de entrega seleccionado
+  bool isDeliverySelected = false;
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // ... (Título y otros widgets anteriores)
+               Padding(
+            padding: EdgeInsets.only(top: 30, right: 20, left: 20, bottom: 20),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: 
+                Text(
+                  'Mi ubicación',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromARGB(255, 0, 87, 255)
+                  ),
+                ),
+            ),
+          ),
+              // Botón Pick Up
+              SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0), 
+                child: Container(
+                height: 340,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 49, 49, 49),
+                  borderRadius: BorderRadius.circular(19.0),
+                ),
+              ),
+              ),
+              
+              TextButton(onPressed: (){}, child: Text('Compartir ubicación',
+              style: TextStyle(color: Color.fromARGB(255, 0, 87, 255),
+                      fontWeight: FontWeight.w600),)),
+              // Botón Delivery
+              SizedBox(height: 15.0),
+
+              // Botón inferior dinámico (Aceptar/Siguiente)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 65,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                        _processPayment(context,2),
+                      },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 0, 87, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(
+                      'Aceptar',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -1178,10 +1289,10 @@ void _datosdePago(BuildContext context, double total) {
                   height: 75,
                   child: ElevatedButton(
                     onPressed: () {
-                      /*Navigator.push(
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Homes()),
-                      );*/
+                        MaterialPageRoute(builder: (context) => RegistrarPago()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 0, 87, 255),
@@ -1290,7 +1401,7 @@ Widget _buildTextField(String label, String value,int num, BuildContext context)
   }
 
 
-void _processPayment(BuildContext context) {
+void _processPayment(BuildContext context,int num) {
   
   int? selectedFarmaciaIndex;
 
@@ -1347,7 +1458,7 @@ void _processPayment(BuildContext context) {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Elige tu farmacia',
+                    num==1 ?'Elige tu farmacia':'Elige tu Delivery',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,

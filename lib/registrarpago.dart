@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'ingresarnumero.dart';
 import 'iniciarsesion.dart';
+import 'pagoerroneo.dart';
 
 void main() {
   runApp(RegistrarPago());
@@ -202,7 +203,7 @@ SizedBox(height: 20.0),
        onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Numero()),
+          MaterialPageRoute(builder: (context) => const Erroneo()),
         );
       },
       style: ElevatedButton.styleFrom(

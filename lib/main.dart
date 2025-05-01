@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_medizin/home.dart';
 import 'inicio.dart';
-import 'registrarpago.dart'; // 
+import 'pagoexitoso.dart'; // 
 void main() {
   runApp(const MyApp());
 }
