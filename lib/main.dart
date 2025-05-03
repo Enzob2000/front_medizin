@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_medizin/home.dart';
 import 'inicio.dart';
-import 'pagoexitoso.dart'; // 
+import 'categorias/categorias.dart'; // 
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Inicio(), 
+      home: Categorias(), 
     );
   }
 }
