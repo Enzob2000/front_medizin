@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'iniciarsesion.dart';
+import 'iniciarsesion/iniciarsesion.dart';
 
 void main() {
   runApp(Verificar());
@@ -165,7 +165,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const InicioSesion()),
+          MaterialPageRoute(builder: (context) => const IniciarSesion()),
         );
       },
       style: ButtonStyle(

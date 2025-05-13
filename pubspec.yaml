@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   smooth_page_indicator: ^1.0.0+2
+  provider: ^6.1.5
 
 dev_dependencies:
   flutter_test:
@@ -36,68 +37,7 @@ flutter_icons:
 
 flutter:
   assets:
-    - assets/logo.png
-    - assets/logoblanco.png
-    - assets/bandera.png
-    - assets/favicon1.png
-    - assets/google.png
-    - assets/face.png
-    - assets/producto1.png
-    - assets/producto2.png
-    - assets/producto3.png
-    - assets/farmacia.png
-    - assets/salud.png
-    - assets/higiene.png
-    - assets/bebe.png
-    - assets/siencere.png
-    - assets/snack.png
-    - assets/bucal.png
-    - assets/hogar.png
-    - assets/banner.png
-    - assets/cocacola.png
-    - assets/ordinary.png
-    - assets/genven.png
-    - assets/acetaminofen_500mg.png
-    - assets/acetaminofen_650mg.png
-    - assets/farmacia2.png
-    - assets/siencere2.png
-    - assets/higiene2.png
-    - assets/bebe2.png
-    - assets/snack2.png
-    - assets/hogar2.png
-    - assets/malestar.png
-    - assets/siencere2.png
-    - assets/higiene2.png
-    - assets/bebe2.png
-    - assets/snack2.png
-    - assets/hogar2.png
-    - assets/torsilax.png
-    - assets/atamel.png
-    - assets/acetaminofen2.png
-    - assets/inicio.png
-    - assets/categoria.png
-    - assets/creditos.png
-    - assets/servicios.png
-    - assets/favoritos.png
-    - assets/compras.png
-    - assets/acerca.png
-    - assets/ayuda.png
-    - assets/notificaciones.png
-    - assets/contraseña.png
-    - assets/direccion.png
-    - assets/datos.png
-    - assets/foto.png
-    - assets/borrar.png
-    - assets/settings.png
-    - assets/contactar.png
-    - assets/farmacia1.jpg
-    - assets/farmacia2.jpg
-    - assets/farmacia3.png
-    - assets/farmacia4.jpg
-    - assets/copiar.png
-    - assets/subirarchivo.png
-    - assets/error.png
-    - assets/pagoexitoso.png
+    - assets/
 
   fonts:
     - family: Poppins
