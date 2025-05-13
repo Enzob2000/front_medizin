@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:front_medizin/carritodecompras.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'categorias.dart';
-import 'busqueda.dart';
+import 'categorias/categorias.dart';
+import 'busqueda/busqueda.dart';
 import 'filtros.dart';
-import 'busqueda2.dart';
+import 'busqueda2/busqueda2.dart';
 import 'menudesplegado.dart';
 
 void main() {

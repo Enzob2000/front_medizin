@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:front_medizin/ayuda.dart';
+import 'package:front_medizin/ayuda/ayuda.dart';
 import 'home.dart';
 import 'miscompras.dart';
 import 'misdatos.dart';

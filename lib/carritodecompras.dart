@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:front_medizin/farmacia.dart';
+import 'package:front_medizin/farmacia/farmacia.dart';
 import 'package:flutter/services.dart';
 import 'registrarpago.dart';
 
